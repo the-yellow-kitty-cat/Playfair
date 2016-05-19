@@ -30,4 +30,34 @@ public class MainTest {
         String testResult = Main.encryptPair(originalInput);
         assertEquals("ul", testResult);
     }
+    @org.junit.Test
+    public void gl() throws Exception {
+        String originalInput = "gl";
+        String testResult = Main.encryptPair(originalInput);
+        assertEquals("lr", testResult);
+    }
+    @org.junit.Test
+    public void tom() throws Exception {
+        String originalInput = "";
+        String testResult = Main.encryptPair(originalInput);
+        assertEquals("", testResult);
+    }
+    @org.junit.Test
+    public void yxskaft() throws Exception {
+        String originalInput = "tx";
+        String testResult = Main.encryptPair(originalInput);
+        assertEquals("ul", testResult);
+    }
+    @org.junit.Test
+    public void x() throws Exception {
+        String originalInput = "tx";
+        String testResult = Main.encryptPair(originalInput);
+        assertEquals("ul", testResult);
+    }
+    @org.junit.Test
+    public void lx() throws Exception {
+        String originalInput = "lx";
+        String testResult = Main.encryptPair(originalInput);
+        assertEquals("yw", testResult);
+    }
 }

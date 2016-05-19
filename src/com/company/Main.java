@@ -43,8 +43,11 @@ W L Y N X
                 }
             }
         }
-        int firstEncryptedRow = firstRow, firstEncryptedColumn = secondColumn;
-        int secondEncryptedRow = secondRow, secondEncryptedColumn = firstColumn;
+        int firstEncryptedRow;// = firstRow,
+        int firstEncryptedColumn;// = secondColumn;
+        int secondEncryptedRow;// = secondRow,
+        int secondEncryptedColumn;// = firstColumn;
+
         if (firstColumn == secondColumn) {
             firstEncryptedRow = firstRow + 1;
             firstEncryptedColumn = firstColumn;
@@ -52,13 +55,21 @@ W L Y N X
             secondEncryptedColumn = secondColumn;
         }
 
-        if (firstRow == secondRow) {
+        else if (firstRow == secondRow) {
             firstEncryptedRow = firstRow;
             firstEncryptedColumn = firstColumn + 1;
             secondEncryptedRow = secondRow;
             secondEncryptedColumn = secondColumn + 1;
         }
-
+        else {
+            firstEncryptedRow = firstRow;
+            firstEncryptedColumn = secondColumn;
+            secondEncryptedRow = secondRow;
+            secondEncryptedColumn = firstColumn;
+        }
+//        if (firstEncryptedRow==5){
+//            firstEncryptedRow=1;
+//        }
 
         char firstEncryptedLetter = keyMatrix[firstEncryptedRow][firstEncryptedColumn];
         char secondEncryptedLetter = keyMatrix[secondEncryptedRow][secondEncryptedColumn];
@@ -68,6 +79,8 @@ W L Y N X
 
     static String lettersOnly(String c) {
         return c.replaceAll("[^a-zA-Z]", "");
+//        return c.replaceAll("[^a-z&&å&&ä&&öA-Z&&Å&&Ä&&Ö]", "");
+
     }
 
 
@@ -85,18 +98,47 @@ W L Y N X
     }
 
     public static String getPlayfairEncryption(String s) {
-        s = lettersOnly(s);
         s = s.toLowerCase();
+        s = s.replaceAll("ö", "o");
+        s = s.replaceAll("å", "a");
+        s = s.replaceAll("ä", "a");
+        s = s.replaceAll("j", "i");
+        s = lettersOnly(s);
         ArrayList<String> letterPairs = new ArrayList<>();
         for (int currentLetter = 0; currentLetter < s.length(); currentLetter++) {
             int nextLetterPosition = currentLetter + 1;
             char originalLetter = (char) (s.charAt(currentLetter));
             char nextLetter;
+
             if (nextLetterPosition == s.length()) {
                 nextLetter = 'x';
             } else {
                 nextLetter = s.charAt(currentLetter + 1);
             }
+//            if (originalLetter == 'ö') {
+//                originalLetter = 'o';
+//            }
+//            if (nextLetter == 'ö') {
+//                nextLetter = 'o';
+//            }
+//            if (originalLetter == 'ä') {
+//                originalLetter = 'a';
+//            }
+//            if (nextLetter == 'ä') {
+//                nextLetter = 'a';
+//            }
+//            if (originalLetter == 'å') {
+//                originalLetter = 'a';
+//            }
+//            if (nextLetter == 'å') {
+//                nextLetter = 'a';
+//            }
+//            if (originalLetter == 'j') {
+//                originalLetter = 'i';
+//            }
+//            if (nextLetter == 'j') {
+//                nextLetter = 'i';
+//            }
             if (originalLetter == nextLetter) {
                 nextLetter = 'x';
             } else {
