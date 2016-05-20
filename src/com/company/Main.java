@@ -1,8 +1,6 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Main {
@@ -20,14 +18,13 @@ W L Y N X
             {'z', 'p', 'h', 'd', 'b'},
             {'a', 'g', 's', 'f', 'e'},
             {'w', 'l', 'y', 'n', 'x'}
-            //  TODO  Fixa loop!
+            //  DONE  Fixa loop!
 
     };
 
-    public static String encryptPair(String originalInput) {
+    static String encryptPair(String originalInput) {
         char firstOriginalLetter = originalInput.charAt(0);
         char secondOriginalLetter = originalInput.charAt(1);
-//        1,0 = 'k'
         int firstRow = -1, firstColumn = -1;
         int secondRow = -1, secondColumn = -1;
         for (int row = 0; row < 5; row++) {
@@ -53,23 +50,29 @@ W L Y N X
             firstEncryptedColumn = firstColumn;
             secondEncryptedRow = secondRow + 1;
             secondEncryptedColumn = secondColumn;
-        }
-
-        else if (firstRow == secondRow) {
+        } else if (firstRow == secondRow) {
             firstEncryptedRow = firstRow;
             firstEncryptedColumn = firstColumn + 1;
             secondEncryptedRow = secondRow;
             secondEncryptedColumn = secondColumn + 1;
-        }
-        else {
+        } else {
             firstEncryptedRow = firstRow;
             firstEncryptedColumn = secondColumn;
             secondEncryptedRow = secondRow;
             secondEncryptedColumn = firstColumn;
         }
-//        if (firstEncryptedRow==5){
-//            firstEncryptedRow=1;
-//        }
+        if (firstEncryptedRow == 5) {
+            firstEncryptedRow = 0;
+        }
+        if (firstEncryptedColumn == 5) {
+            firstEncryptedColumn = 0;
+        }
+        if (secondEncryptedRow == 5) {
+            secondEncryptedRow = 0;
+        }
+        if (secondEncryptedColumn == 5) {
+            secondEncryptedColumn = 0;
+        }
 
         char firstEncryptedLetter = keyMatrix[firstEncryptedRow][firstEncryptedColumn];
         char secondEncryptedLetter = keyMatrix[secondEncryptedRow][secondEncryptedColumn];
@@ -77,27 +80,29 @@ W L Y N X
         return firstEncryptedLetter + "" + secondEncryptedLetter;
     }
 
-    static String lettersOnly(String c) {
+    private static String lettersOnly(String c) {
         return c.replaceAll("[^a-zA-Z]", "");
-//        return c.replaceAll("[^a-z&&å&&ä&&öA-Z&&Å&&Ä&&Ö]", "");
 
     }
 
 
     public static void main(String[] args) {
 
-        // write your code here
         String s;
 
         Scanner in = new Scanner(System.in);
 
         System.out.println("Enter a string");
         s = in.nextLine();
-        String encryptionToString = getPlayfairEncryption(s);
-        System.out.println(encryptionToString);
+        if (s.equals("")) {
+            System.out.println(s);
+        } else {
+            String encryptionToString = getPlayfairEncryption(s);
+            System.out.println(encryptionToString);
+        }
     }
 
-    public static String getPlayfairEncryption(String s) {
+    static String getPlayfairEncryption(String s) {
         s = s.toLowerCase();
         s = s.replaceAll("ö", "o");
         s = s.replaceAll("å", "a");
@@ -115,30 +120,6 @@ W L Y N X
             } else {
                 nextLetter = s.charAt(currentLetter + 1);
             }
-//            if (originalLetter == 'ö') {
-//                originalLetter = 'o';
-//            }
-//            if (nextLetter == 'ö') {
-//                nextLetter = 'o';
-//            }
-//            if (originalLetter == 'ä') {
-//                originalLetter = 'a';
-//            }
-//            if (nextLetter == 'ä') {
-//                nextLetter = 'a';
-//            }
-//            if (originalLetter == 'å') {
-//                originalLetter = 'a';
-//            }
-//            if (nextLetter == 'å') {
-//                nextLetter = 'a';
-//            }
-//            if (originalLetter == 'j') {
-//                originalLetter = 'i';
-//            }
-//            if (nextLetter == 'j') {
-//                nextLetter = 'i';
-//            }
             if (originalLetter == nextLetter) {
                 nextLetter = 'x';
             } else {

@@ -39,20 +39,32 @@ public class MainTest {
     @org.junit.Test
     public void tom() throws Exception {
         String originalInput = "";
-        String testResult = Main.encryptPair(originalInput);
+        String testResult = Main.getPlayfairEncryption(originalInput);
         assertEquals("", testResult);
     }
     @org.junit.Test
     public void yxskaft() throws Exception {
-        String originalInput = "tx";
-        String testResult = Main.encryptPair(originalInput);
-        assertEquals("ul", testResult);
+        String originalInput = "Yxskaftbud, ge vår WC-zonmö IQ-hjälp.";
+        String testResult = Main.getPlayfairEncryption(originalInput);
+        assertEquals("nwavgeupqbsaksmlmbqorcovsvgwbl", testResult);
     }
     @org.junit.Test
-    public void x() throws Exception {
-        String originalInput = "tx";
+    public void lynx() throws Exception {
+        String originalInput = "Mr. Jock, TV quiz PhD, bags few lynx.";
+        String testResult = Main.getPlayfairEncryption(originalInput);
+        assertEquals("riocmuvqukmhhdbzgsfeaxynxw", testResult);
+    }
+    @org.junit.Test
+    public void cr() throws Exception {
+        String originalInput = "cr";
         String testResult = Main.encryptPair(originalInput);
-        assertEquals("ul", testResult);
+        assertEquals("mi", testResult);
+    }
+    @org.junit.Test
+    public void nq() throws Exception {
+        String originalInput = "nq";
+        String testResult = Main.encryptPair(originalInput);
+        assertEquals("od", testResult);
     }
     @org.junit.Test
     public void lx() throws Exception {
@@ -60,4 +72,26 @@ public class MainTest {
         String testResult = Main.encryptPair(originalInput);
         assertEquals("yw", testResult);
     }
+    @org.junit.Test
+    public void depressed() throws Exception {
+        String originalInput = "IF YOU ARE" +
+                "DEPRESSED YOU ARE" +
+                "LIVING IN THE PAST. IF" +
+                "YOU ARE ANXIOUS YOU" +
+                "ARE LIVING IN THE" +
+                "FUTURE. IF YOU ARE AT" +
+                "PEACE YOU ARE LIVING" +
+                "IN THE PRESENT" +
+                "" +
+                "LAO TZU";
+        String testResult = Main.getPlayfairEncryption(originalInput);
+        assertEquals("osnikecgbfgtaffahncqgmgxvhoysrlqbszggvosnikecgfwyccqyicqgmgxvhoysrlqbseqvkcgosnikecggkbgemsxcqgmgxvhoysrlqbsgtaffxprfmkpbc", testResult);
+    } @org.junit.Test
+    public void yxkaft() throws Exception {
+        String originalInput = "Yxskaftbud, ge vår WC-zonmö IQ-hjälp.";
+        String testResult = Main.getPlayfairEncryption(originalInput);
+
+        assertEquals("nwavgeupqbsaksmlmbqorcovsvgwbl", testResult);
+    }
+
 }
